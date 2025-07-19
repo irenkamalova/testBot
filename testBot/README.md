@@ -1,34 +1,70 @@
-# testBot
+# Telegram Bot Example
 
-A starter project for your bot or automation scripts.
+A simple Telegram bot built with Python using the `python-telegram-bot` library. This bot can echo messages, greet users, provide inspirational quotes, and more. Easily extendable with new commands.
 
-## Description
+## Features
+- Echoes user messages
+- /start — Welcome message
+- /help — List available commands
+- /greet — Greet the user
+- /quote — Get a random inspirational quote
 
-testBot is a template repository to kickstart your bot or automation project. Customize it to fit your needs.
+## Setup Instructions
 
-## Getting Started
+### 1. Clone the repository
+```sh
+git clone https://github.com/irenkamalova/testBot.git
+cd testBot
+```
 
-1. **Clone the repository:**
-   ```bash
-   git clone <repo-url>
-   cd testBot
-   ```
+### 2. Create a virtual environment (recommended)
+```sh
+python3 -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+```
 
-2. **Install dependencies:**
-   (Add your dependency manager instructions here, e.g., `npm install`, `pip install -r requirements.txt`, etc.)
+### 3. Install dependencies
+```sh
+pip install -r requirements.txt
+```
 
-3. **Run the project:**
-   (Add your run instructions here, e.g., `npm start`, `python main.py`, etc.)
+### 4. Create a Telegram Bot and get the token
+- Talk to [@BotFather](https://t.me/BotFather) on Telegram
+- Use `/newbot` to create a new bot and get your API token
 
-## Project Structure
+### 5. Set your bot token as an environment variable
+```sh
+export TELEGRAM_BOT_TOKEN=your_token_here
+```
+On Windows (cmd):
+```cmd
+set TELEGRAM_BOT_TOKEN=your_token_here
+```
 
-- `README.md` — Project documentation
-- (Add more files and folders as your project grows)
+### 6. Run the bot
+```sh
+python bot.py
+```
 
-## Contributing
+## How to Add New Commands
+1. Define a new async function in `bot.py` for your command. Example:
+    ```python
+    async def my_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        if update.message:
+            await update.message.reply_text('This is my new command!')
+    ```
+2. Register the command handler in the `if __name__ == '__main__':` block:
+    ```python
+    app.add_handler(CommandHandler('mycommand', my_command))
+    ```
+3. Add a description to the `/help` command if desired.
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Contribution Guidelines
+- Fork the repository and create your branch from `main`.
+- Add your feature or fix.
+- Ensure code is clean and documented.
+- Submit a pull request with a clear description of your changes.
 
 ## License
 
-[MIT](LICENSE) (or specify your license here) 
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details. 
